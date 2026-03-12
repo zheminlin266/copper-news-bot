@@ -50,7 +50,9 @@ git push -u origin main
 1. 优先从 RSS Feed 获取文章（更稳定）
 2. RSS 不可用时回退到 HTML 抓取
 3. 使用 Google Translate（免费，无需 API Key）翻译标题
-4. 通过 Telegram Bot API 发送消息
+
+End
+5. 通过 Telegram Bot API 发送消息
 
 ## 费用
 
