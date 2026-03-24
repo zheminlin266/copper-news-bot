@@ -2,7 +2,8 @@
 """Copper news bot.
 
 Scrapes https://www.mining.com/commodity/copper/ for news (title, date, subtitle),
-records all seen articles in News_List.md, and sends only new ones to Telegram.
+records all seen articles in News_List.md, and sends only new ones to Telegram
+as a single combined message with Chinese-translated subtitles.
 
 Primary source: RSS feed (reliable, structured).
 Fallback: HTML scraping of the commodity page.
@@ -17,6 +18,7 @@ import requests
 from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
 from bs4 import BeautifulSoup
+from deep_translator import GoogleTranslator
 
 
 # ── Constants ──────────────────────────────────────────────────────────────────
@@ -114,7 +116,7 @@ def _parse_rss_date(pub_str):
         dt = parsedate_to_datetime(pub_str).astimezone(gmt8)
         return dt.strftime("%Y-%m-%d")
     except Exception:
-        return pub_str  # return raw string if parsing fails
+        return pub_str
 
 
 # ── HTML scraping (fallback) ───────────────────────────────────────────────────
@@ -132,7 +134,7 @@ def _fetch_via_html():
     articles = []
     seen_urls = set()
 
-    # Strategy 1: <article> tags (standard HTML5 / WordPress pattern)
+    # Strategy 1: <article> tags
     for art in soup.find_all("article"):
         item = _extract_from_container(art)
         if item and item["url"] not in seen_urls:
@@ -260,6 +262,19 @@ def _truncate(text, max_len=200):
     return text[:max_len].rsplit(" ", 1)[0] + "…"
 
 
+# ── Translation ────────────────────────────────────────────────────────────────
+
+def _translate_to_zh(text):
+    """Translate text to Simplified Chinese. Returns original on failure."""
+    if not text:
+        return ""
+    try:
+        return GoogleTranslator(source="auto", target="zh-CN").translate(text)
+    except Exception as e:
+        print(f"Translation error: {e}")
+        return text
+
+
 # ── News_List.md persistence ───────────────────────────────────────────────────
 
 def load_seen_urls():
@@ -301,27 +316,41 @@ def _now_gmt8():
 
 # ── Telegram ───────────────────────────────────────────────────────────────────
 
-def send_telegram(bot_token, channel_id, item):
-    """Send a single news article to the Telegram channel."""
-    title    = _escape_html(item["title"])
-    url      = item["url"]
-    date     = _escape_html(item.get("date", ""))
-    subtitle = _escape_html(item.get("subtitle", ""))
+def send_telegram(bot_token, channel_id, items):
+    """Build one combined message for all items and post it to Telegram."""
+    lines = ["📰 <b>铜矿新闻</b>"]
 
-    lines = [f'📰 <b><a href="{url}">{title}</a></b>']
-    if date:
-        lines.append(f"📅 {date}")
-    if subtitle:
-        lines.append(f"\n{subtitle}")
-    lines.append(f'\n<a href="{url}">Read more →</a>')
+    for i, item in enumerate(items, 1):
+        title = _escape_html(item["title"])
+        url   = item["url"]
+        date  = _escape_html(item.get("date", ""))
+        subtitle_zh = _translate_to_zh(item.get("subtitle", ""))
 
+        lines.append("")
+        lines.append(f'{i}. <b><a href="{url}">{title}</a></b>')
+        if date:
+            lines.append(f"📅 {date}")
+        if subtitle_zh:
+            lines.append(_escape_html(subtitle_zh))
+
+    full_text = "\n".join(lines)
+
+    sent_count = 0
+    for chunk in _split_message(full_text, 4096):
+        _post_message(bot_token, channel_id, chunk)
+        sent_count += 1
+
+    return sent_count
+
+
+def _post_message(bot_token, channel_id, text):
     resp = requests.post(
         f"https://api.telegram.org/bot{bot_token}/sendMessage",
         json={
-            "chat_id": channel_id,
-            "text": "\n".join(lines),
-            "parse_mode": "HTML",
-            "disable_web_page_preview": False,
+            "chat_id":                  channel_id,
+            "text":                     text,
+            "parse_mode":               "HTML",
+            "disable_web_page_preview": True,
         },
         timeout=30,
     )
@@ -329,6 +358,23 @@ def send_telegram(bot_token, channel_id, item):
     if not data.get("ok"):
         raise RuntimeError(f"Telegram API error: {data}")
     return data
+
+
+def _split_message(text, limit):
+    """Split text into chunks of at most `limit` chars, breaking at newlines."""
+    if len(text) <= limit:
+        return [text]
+    chunks, current, current_len = [], [], 0
+    for line in text.split("\n"):
+        # +1 for the newline character
+        if current_len + len(line) + 1 > limit and current:
+            chunks.append("\n".join(current))
+            current, current_len = [], 0
+        current.append(line)
+        current_len += len(line) + 1
+    if current:
+        chunks.append("\n".join(current))
+    return chunks
 
 
 def _escape_html(text):
@@ -363,17 +409,13 @@ def main():
         print("No new articles to send.")
         return
 
-    # 3. Send each new article to Telegram
-    sent = 0
-    for item in new_articles:
-        try:
-            send_telegram(bot_token, channel_id, item)
-            print(f"  Sent: {item['title'][:60]}")
-            sent += 1
-        except Exception as e:
-            print(f"  ERROR sending '{item['title'][:60]}': {e}")
-
-    print(f"Sent {sent}/{len(new_articles)} articles to Telegram.")
+    # 3. Send all new articles as a single combined Telegram message
+    try:
+        chunks_sent = send_telegram(bot_token, channel_id, new_articles)
+        print(f"Sent {len(new_articles)} articles in {chunks_sent} message(s).")
+    except Exception as e:
+        print(f"ERROR sending to Telegram: {e}")
+        sys.exit(1)
 
     # 4. Persist new articles to News_List.md
     save_news_list(new_articles)
