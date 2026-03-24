@@ -1,36 +1,24 @@
 #!/usr/bin/env python3
-"""Daily copper news fetcher and Telegram notifier.
+"""Copper news bot.
 
-Fetches yesterday's copper articles from mining.com,
-translates titles to Chinese, and posts to a Telegram channel.
+Scrapes https://www.mining.com/commodity/copper/ for news (title, date, subtitle),
+records all seen articles in News_List.md, and sends only new ones to Telegram.
 
 Runs via GitHub Actions — no local machine required.
 """
 
 import os
+import re
 import sys
-import calendar
 import requests
-from datetime import datetime, timedelta, timezone
-from email.utils import parsedate_to_datetime
+from datetime import datetime, timezone, timedelta
 from bs4 import BeautifulSoup
-from deep_translator import GoogleTranslator
 
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
+# ── Constants ──────────────────────────────────────────────────────────────────
 
-def get_yesterday_gmt8():
-    gmt8 = timezone(timedelta(hours=8))
-    today = datetime.now(gmt8).date()
-    return today - timedelta(days=1)
-
-
-def date_display(d):
-    """Return 'March 10, 2026' (no zero-padded day, cross-platform)."""
-    return f"{calendar.month_name[d.month]} {d.day}, {d.year}"
-
-
-# ── Fetching ──────────────────────────────────────────────────────────────────
+SOURCE_URL = "https://www.mining.com/commodity/copper/"
+NEWS_LIST_FILE = "News_List.md"
 
 HEADERS = {
     "User-Agent": (
@@ -40,146 +28,249 @@ HEADERS = {
     )
 }
 
-RSS_CANDIDATES = [
-    "https://www.mining.com/commodity/copper/feed/",
-    "https://www.mining.com/feed/?category=copper",
-]
 
+# ── Scraping ───────────────────────────────────────────────────────────────────
 
-def fetch_via_rss(target_date):
-    """Try RSS feeds. Returns list of articles or None on failure."""
-    gmt8 = timezone(timedelta(hours=8))
+def scrape_news():
+    """Scrape mining.com copper page and return list of article dicts.
 
-    for rss_url in RSS_CANDIDATES:
-        try:
-            resp = requests.get(rss_url, headers=HEADERS, timeout=15)
-            if resp.status_code != 200:
-                continue
-
-            soup = BeautifulSoup(resp.content, "lxml-xml")
-            items = soup.find_all("item")
-            if not items:
-                continue
-
-            articles = []
-            for item in items:
-                pub_date_tag = item.find("pubDate")
-                if not pub_date_tag:
-                    continue
-                try:
-                    dt = parsedate_to_datetime(pub_date_tag.get_text())
-                    article_date = dt.astimezone(gmt8).date()
-                except Exception:
-                    continue
-
-                if article_date != target_date:
-                    continue
-
-                title_tag = item.find("title")
-                link_tag = item.find("link")
-                if title_tag and link_tag:
-                    title = title_tag.get_text(strip=True)
-                    link = link_tag.get_text(strip=True)
-                    if title and link:
-                        articles.append({"title": title, "url": link})
-
-            if articles:
-                print(f"RSS OK ({rss_url}): {len(articles)} articles")
-                return articles
-
-        except Exception as e:
-            print(f"RSS {rss_url} error: {e}")
-
-    return None
-
-
-def fetch_via_html(target_date):
-    """Scrape HTML page. Returns list of articles (may be empty)."""
-    url = "https://www.mining.com/commodity/copper/"
-    resp = requests.get(url, headers=HEADERS, timeout=30)
+    Each dict has: url, title, date, subtitle.
+    """
+    resp = requests.get(SOURCE_URL, headers=HEADERS, timeout=30)
     resp.raise_for_status()
-
     soup = BeautifulSoup(resp.text, "html.parser")
-    target_str = date_display(target_date)
-    target_iso = target_date.isoformat()
 
     articles = []
     seen_urls = set()
 
-    def add_article(title_elem, link_elem):
-        title = title_elem.get_text(strip=True)
-        href = link_elem.get("href", "")
-        if not href.startswith("http"):
-            href = "https://www.mining.com" + href
-        if href not in seen_urls and "mining.com" in href and len(title) > 10:
-            seen_urls.add(href)
-            articles.append({"title": title, "url": href})
+    # Strategy 1: find <article> tags (standard HTML5 / WordPress pattern)
+    for art in soup.find_all("article"):
+        item = _extract_from_container(art)
+        if item and item["url"] not in seen_urls:
+            seen_urls.add(item["url"])
+            articles.append(item)
 
-    def walk_up_for_article(start_elem):
-        container = start_elem
-        for _ in range(7):
-            container = container.parent
-            if container is None:
-                break
-            title_elem = container.find(["h2", "h3", "h4"])
-            if title_elem:
-                link = title_elem.find("a", href=True) or container.find("a", href=True)
-                if link:
-                    add_article(title_elem, link)
-                    return
-
-    # Strategy 1: <time> elements with datetime attribute or text match
-    for time_elem in soup.find_all("time"):
-        dt_attr = time_elem.get("datetime", "")
-        text = time_elem.get_text(strip=True)
-        if target_iso in dt_attr or target_str in text:
-            walk_up_for_article(time_elem)
-
-    # Strategy 2: any element whose text contains the date string
+    # Strategy 2: fallback — look for common card/post div wrappers
     if not articles:
-        for node in soup.find_all(string=lambda t: t and target_str in t):
-            walk_up_for_article(node.parent)
+        for cls in ("post", "article", "entry", "card", "item", "news-item",
+                    "td_module", "jeg_post"):
+            for div in soup.find_all("div", class_=re.compile(cls, re.I)):
+                item = _extract_from_container(div)
+                if item and item["url"] not in seen_urls:
+                    seen_urls.add(item["url"])
+                    articles.append(item)
+            if articles:
+                break
 
-    print(f"HTML scrape: {len(articles)} articles")
+    # Strategy 3: last resort — find all h2/h3 links and grab nearby date/excerpt
+    if not articles:
+        for heading in soup.find_all(["h2", "h3"]):
+            link = heading.find("a", href=True)
+            if not link:
+                continue
+            href = _normalize_url(link.get("href", ""))
+            if not href or "mining.com" not in href:
+                continue
+            title = heading.get_text(strip=True)
+            if len(title) < 10:
+                continue
+            if href in seen_urls:
+                continue
+
+            # Walk up to find date and subtitle in the surrounding container
+            container = heading.parent
+            for _ in range(5):
+                if container is None:
+                    break
+                date = _find_date(container)
+                subtitle = _find_subtitle(container, heading)
+                if date or subtitle:
+                    break
+                container = container.parent
+
+            seen_urls.add(href)
+            articles.append({
+                "url": href,
+                "title": title,
+                "date": date or "",
+                "subtitle": subtitle or "",
+            })
+
+    print(f"Scraped {len(articles)} articles from {SOURCE_URL}")
     return articles
 
 
-# ── Translation ───────────────────────────────────────────────────────────────
+def _extract_from_container(container):
+    """Try to extract title, url, date, subtitle from a container element."""
+    # Title + URL
+    heading = container.find(["h1", "h2", "h3", "h4"])
+    if not heading:
+        return None
+    link = heading.find("a", href=True) or container.find("a", href=True)
+    if not link:
+        return None
+    href = _normalize_url(link.get("href", ""))
+    if not href or "mining.com" not in href:
+        return None
+    title = heading.get_text(strip=True)
+    if len(title) < 10:
+        return None
 
-def translate(text):
-    try:
-        return GoogleTranslator(source="en", target="zh-CN").translate(text)
-    except Exception as e:
-        print(f"Translation error for '{text[:40]}...': {e}")
-        return text  # fall back to original
+    date = _find_date(container)
+    subtitle = _find_subtitle(container, heading)
+
+    return {
+        "url": href,
+        "title": title,
+        "date": date or "",
+        "subtitle": subtitle or "",
+    }
 
 
-# ── Message ───────────────────────────────────────────────────────────────────
-
-def build_message(articles, date_str):
-    if not articles:
-        return f"⚠️ 昨日（{date_str}）暂无铜矿新闻"
-
-    lines = [f"\U0001f4f0 铜矿新闻 {date_str}", ""]
-    for article in articles:
-        zh = translate(article["title"])
-        lines.append(f"[{article['title']}]({article['url']})")
-        lines.append(zh)
-        lines.append("")
-
-    return "\n".join(lines).strip()
+def _normalize_url(href):
+    """Ensure URL is absolute."""
+    href = href.strip()
+    if href.startswith("//"):
+        return "https:" + href
+    if href.startswith("/"):
+        return "https://www.mining.com" + href
+    return href
 
 
-# ── Telegram ──────────────────────────────────────────────────────────────────
+def _find_date(container):
+    """Extract a date string from a container element."""
+    # <time datetime="..."> is the most reliable
+    time_tag = container.find("time")
+    if time_tag:
+        dt_attr = time_tag.get("datetime", "")
+        text = time_tag.get_text(strip=True)
+        return dt_attr[:10] if dt_attr else text
 
-def send_telegram(bot_token, channel_id, message):
-    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    # Look for elements with date-like class names
+    for cls in ("date", "time", "meta", "published", "entry-date", "post-date"):
+        el = container.find(class_=re.compile(cls, re.I))
+        if el:
+            txt = el.get_text(strip=True)
+            if txt:
+                return txt
+
+    # Try regex on the container text
+    text = container.get_text(" ", strip=True)
+    # ISO date pattern
+    m = re.search(r"\b(\d{4}-\d{2}-\d{2})\b", text)
+    if m:
+        return m.group(1)
+    # "Month DD, YYYY"
+    m = re.search(
+        r"\b(January|February|March|April|May|June|July|August|"
+        r"September|October|November|December)\s+\d{1,2},?\s+\d{4}\b",
+        text,
+    )
+    if m:
+        return m.group(0)
+
+    return ""
+
+
+def _find_subtitle(container, heading_elem):
+    """Extract a subtitle/excerpt from a container element, skipping the heading."""
+    # Look for explicit excerpt/description elements
+    for cls in ("excerpt", "entry-summary", "entry-content", "description",
+                "summary", "teaser", "intro", "post-excerpt", "td-excerpt",
+                "jeg_post_excerpt"):
+        el = container.find(class_=re.compile(cls, re.I))
+        if el:
+            txt = el.get_text(strip=True)
+            if txt:
+                return _truncate(txt)
+
+    # Find the first <p> that is NOT inside the heading and has real content
+    for p in container.find_all("p"):
+        # Skip if p is an ancestor or descendant of the heading
+        if heading_elem in p.parents or p in heading_elem.parents:
+            continue
+        txt = p.get_text(strip=True)
+        if len(txt) > 20:
+            return _truncate(txt)
+
+    return ""
+
+
+def _truncate(text, max_len=200):
+    """Truncate text to max_len characters, ending at a word boundary."""
+    if len(text) <= max_len:
+        return text
+    truncated = text[:max_len].rsplit(" ", 1)[0]
+    return truncated + "…"
+
+
+# ── News_List.md persistence ───────────────────────────────────────────────────
+
+def load_seen_urls():
+    """Read News_List.md and return a set of all URLs recorded there."""
+    if not os.path.exists(NEWS_LIST_FILE):
+        return set()
+    seen = set()
+    with open(NEWS_LIST_FILE, "r", encoding="utf-8") as f:
+        for line in f:
+            m = re.search(r"\*\*URL\*\*:\s*(https?://\S+)", line)
+            if m:
+                seen.add(m.group(1).strip())
+    return seen
+
+
+def save_news_list(new_items):
+    """Append new_items to News_List.md (create file if it doesn't exist)."""
+    # Initialise file with header if it doesn't exist
+    if not os.path.exists(NEWS_LIST_FILE):
+        with open(NEWS_LIST_FILE, "w", encoding="utf-8") as f:
+            f.write("# Copper News List\n\n")
+
+    timestamp = _now_gmt8().strftime("%Y-%m-%d %H:%M GMT+8")
+
+    with open(NEWS_LIST_FILE, "a", encoding="utf-8") as f:
+        for item in new_items:
+            f.write(f"\n---\n\n")
+            f.write(f"## {item['title']}\n\n")
+            f.write(f"- **Date**: {item['date']}\n")
+            f.write(f"- **URL**: {item['url']}\n")
+            if item.get("subtitle"):
+                f.write(f"- **Subtitle**: {item['subtitle']}\n")
+            f.write(f"- **Added**: {timestamp}\n")
+
+    print(f"Saved {len(new_items)} new articles to {NEWS_LIST_FILE}")
+
+
+def _now_gmt8():
+    gmt8 = timezone(timedelta(hours=8))
+    return datetime.now(gmt8)
+
+
+# ── Telegram ───────────────────────────────────────────────────────────────────
+
+def send_telegram(bot_token, channel_id, item):
+    """Send a single news article to the Telegram channel."""
+    title = _escape_html(item["title"])
+    url = item["url"]
+    date = _escape_html(item.get("date", ""))
+    subtitle = _escape_html(item.get("subtitle", ""))
+
+    lines = [f'📰 <b><a href="{url}">{title}</a></b>']
+    if date:
+        lines.append(f"📅 {date}")
+    if subtitle:
+        lines.append(f"\n{subtitle}")
+    lines.append(f'\n<a href="{url}">Read more →</a>')
+
+    text = "\n".join(lines)
+
+    api_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     resp = requests.post(
-        url,
+        api_url,
         json={
             "chat_id": channel_id,
-            "text": message,
-            "parse_mode": "Markdown",
+            "text": text,
+            "parse_mode": "HTML",
             "disable_web_page_preview": False,
         },
         timeout=30,
@@ -190,7 +281,17 @@ def send_telegram(bot_token, channel_id, message):
     return data
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+def _escape_html(text):
+    """Escape special HTML characters for Telegram HTML parse mode."""
+    return (
+        text.replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace('"', "&quot;")
+    )
+
+
+# ── Main ───────────────────────────────────────────────────────────────────────
 
 def main():
     bot_token = os.environ.get("BOT_TOKEN", "")
@@ -200,22 +301,35 @@ def main():
         print("ERROR: BOT_TOKEN and CHANNEL_ID environment variables are required.")
         sys.exit(1)
 
-    yesterday = get_yesterday_gmt8()
-    date_str = yesterday.isoformat()
-    print(f"Fetching copper news for {date_str} ({date_display(yesterday)}) ...")
+    # 1. Scrape current articles from the page
+    all_articles = scrape_news()
+    if not all_articles:
+        print("No articles found on the page. Exiting.")
+        return
 
-    articles = fetch_via_rss(yesterday)
-    if articles is None:
-        print("RSS unavailable, falling back to HTML scraping ...")
-        articles = fetch_via_html(yesterday)
+    # 2. Find articles not yet recorded in News_List.md
+    seen_urls = load_seen_urls()
+    new_articles = [a for a in all_articles if a["url"] not in seen_urls]
+    print(f"New articles (not in {NEWS_LIST_FILE}): {len(new_articles)}")
 
-    message = build_message(articles, date_str)
-    print("--- Message ---")
-    print(message)
-    print("---------------")
+    if not new_articles:
+        print("No new articles to send.")
+        return
 
-    result = send_telegram(bot_token, channel_id, message)
-    print(f"Sent OK: {result.get('ok')}")
+    # 3. Send each new article to Telegram
+    sent = 0
+    for item in new_articles:
+        try:
+            send_telegram(bot_token, channel_id, item)
+            print(f"  Sent: {item['title'][:60]}")
+            sent += 1
+        except Exception as e:
+            print(f"  ERROR sending '{item['title'][:60]}': {e}")
+
+    print(f"Sent {sent}/{len(new_articles)} articles to Telegram.")
+
+    # 4. Persist new articles to News_List.md
+    save_news_list(new_articles)
 
 
 if __name__ == "__main__":
