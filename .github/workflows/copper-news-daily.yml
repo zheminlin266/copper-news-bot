@@ -2,7 +2,7 @@ name: Copper News Daily
 
 on:
   schedule:
-    # 09:00 GMT+8 = 01:00 UTC  →  "yesterday" in GMT+8 is the correct previous day
+    # 09:00 GMT+8 = 01:00 UTC
     - cron: '0 1 * * *'
   workflow_dispatch:   # allow manual run from the GitHub Actions UI
 
@@ -10,6 +10,8 @@ jobs:
   send-news:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: write   # needed to commit News_List.md back to repo
 
     steps:
       - name: Checkout repository
@@ -35,3 +37,11 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
         run: python main.py
+
+      - name: Commit updated News_List.md
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add News_List.md
+          git diff --staged --quiet || git commit -m "Update News_List.md [skip ci]"
+          git push
