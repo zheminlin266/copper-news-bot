@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Copper news bot.
 
-Scrapes https://www.mining.com/commodity/copper/ for news (title, date, subtitle),
-records all seen articles in News_List.md, and sends only new ones to Telegram
-as a single combined message with Chinese-translated subtitles.
+Fetches copper/mining news via Google News RSS (publicly accessible from
+GitHub Actions), records all seen articles in News_List.md, and sends only
+new ones to Telegram as a single combined message with Chinese-translated
+subtitles.
 
-Primary source: RSS feed (reliable, structured).
-Fallback: HTML scraping of the commodity page.
+Note: mining.com direct RSS and HTML both return 403 from GitHub Actions IPs,
+so Google News RSS is used as the primary source.
 
 Runs via GitHub Actions — no local machine required.
 """
@@ -23,13 +24,13 @@ from deep_translator import GoogleTranslator
 
 # ── Constants ──────────────────────────────────────────────────────────────────
 
-SOURCE_URL = "https://www.mining.com/commodity/copper/"
 NEWS_LIST_FILE = "News_List.md"
 
-RSS_CANDIDATES = [
-    "https://www.mining.com/commodity/copper/feed/",
-    "https://www.mining.com/feed/?category=copper",
-]
+# Google News RSS: copper mining news, accessible from GitHub Actions
+GOOGLE_NEWS_RSS = (
+    "https://news.google.com/rss/search"
+    "?q=copper+mining&hl=en-US&gl=US&ceid=US:en"
+)
 
 HEADERS = {
     "User-Agent": (
@@ -43,68 +44,86 @@ HEADERS = {
 # ── Scraping ───────────────────────────────────────────────────────────────────
 
 def scrape_news():
-    """Return list of article dicts with keys: url, title, date, subtitle.
-
-    Tries RSS feeds first (more reliable). Falls back to HTML scraping.
-    """
-    articles = _fetch_via_rss()
-    if articles is None:
-        print("RSS unavailable, falling back to HTML scraping...")
-        articles = _fetch_via_html()
+    """Return list of article dicts with keys: url, title, date, subtitle."""
+    articles = _fetch_via_google_news()
     print(f"Found {len(articles)} articles total")
     return articles
 
 
 # ── RSS (primary) ──────────────────────────────────────────────────────────────
 
-def _fetch_via_rss():
-    """Try RSS feeds. Returns list of article dicts, or None if all feeds fail."""
-    for rss_url in RSS_CANDIDATES:
-        try:
-            resp = requests.get(rss_url, headers=HEADERS, timeout=15)
-            if resp.status_code != 200:
-                print(f"RSS {rss_url}: HTTP {resp.status_code}, skipping")
-                continue
+def _fetch_via_google_news():
+    """Fetch copper/mining news via Google News RSS.
 
-            soup = BeautifulSoup(resp.content, "lxml-xml")
-            items = soup.find_all("item")
-            if not items:
-                print(f"RSS {rss_url}: no <item> elements found")
-                continue
+    Google News is publicly accessible from GitHub Actions (unlike mining.com
+    which returns 403 for all requests from CI runner IPs).
+    Returns list of article dicts with keys: url, title, date, subtitle.
+    """
+    try:
+        resp = requests.get(GOOGLE_NEWS_RSS, headers=HEADERS, timeout=15)
+        resp.raise_for_status()
+    except Exception as e:
+        print(f"Google News RSS error: {e}")
+        return []
 
-            articles = []
-            for item in items:
-                title_tag = item.find("title")
-                link_tag  = item.find("link")
-                pub_tag   = item.find("pubDate")
-                desc_tag  = item.find("description")
+    soup = BeautifulSoup(resp.content, "lxml-xml")
+    items = soup.find_all("item")
+    if not items:
+        print("Google News RSS: no <item> elements found")
+        return []
 
-                title = title_tag.get_text(strip=True) if title_tag else ""
-                link  = link_tag.get_text(strip=True)  if link_tag  else ""
-                pub   = pub_tag.get_text(strip=True)   if pub_tag   else ""
-                desc  = desc_tag.get_text(strip=True)  if desc_tag  else ""
+    articles = []
+    for item in items:
+        title_tag  = item.find("title")
+        link_tag   = item.find("link")
+        pub_tag    = item.find("pubDate")
+        source_tag = item.find("source")
+        desc_tag   = item.find("description")
 
-                if not title or not link:
-                    continue
+        title  = title_tag.get_text(strip=True)  if title_tag  else ""
+        link   = link_tag.get_text(strip=True)   if link_tag   else ""
+        pub    = pub_tag.get_text(strip=True)    if pub_tag    else ""
+        source = source_tag.get_text(strip=True) if source_tag else ""
+        desc   = desc_tag.get_text(strip=True)   if desc_tag   else ""
 
-                # description in RSS is often HTML-encoded — strip tags
-                desc_clean = BeautifulSoup(desc, "html.parser").get_text(strip=True)
+        if not title or not link:
+            continue
 
-                articles.append({
-                    "url":      link,
-                    "title":    title,
-                    "date":     _parse_rss_date(pub),
-                    "subtitle": _truncate(desc_clean),
-                })
+        # Strip source name from end of title (Google appends " - Source Name")
+        if source and title.endswith(f" - {source}"):
+            title = title[: -(len(source) + 3)].strip()
 
-            if articles:
-                print(f"RSS OK ({rss_url}): {len(articles)} articles")
-                return articles
+        # Use description snippet as subtitle if it's meaningful (>30 chars),
+        # otherwise fall back to the source name
+        desc_clean = BeautifulSoup(desc, "html.parser").get_text(strip=True)
+        if len(desc_clean) > 30 and desc_clean != title:
+            subtitle = _truncate(desc_clean)
+        elif source:
+            subtitle = source
+        else:
+            subtitle = ""
 
-        except Exception as e:
-            print(f"RSS {rss_url} error: {e}")
+        # Resolve Google redirect URL → real article URL
+        real_url = _resolve_url(link)
 
-    return None
+        articles.append({
+            "url":      real_url,
+            "title":    title,
+            "date":     _parse_rss_date(pub),
+            "subtitle": subtitle,
+        })
+
+    print(f"Google News RSS: {len(articles)} articles fetched")
+    return articles
+
+
+def _resolve_url(url):
+    """Follow redirects to get the final article URL."""
+    try:
+        r = requests.head(url, headers=HEADERS, timeout=10, allow_redirects=True)
+        return r.url
+    except Exception:
+        return url  # keep original on failure
 
 
 def _parse_rss_date(pub_str):
@@ -119,143 +138,6 @@ def _parse_rss_date(pub_str):
         return pub_str
 
 
-# ── HTML scraping (fallback) ───────────────────────────────────────────────────
-
-def _fetch_via_html():
-    """Scrape the copper commodity page. Returns list of article dicts."""
-    try:
-        resp = requests.get(SOURCE_URL, headers=HEADERS, timeout=30)
-        resp.raise_for_status()
-    except Exception as e:
-        print(f"HTML fetch error: {e}")
-        return []
-
-    soup = BeautifulSoup(resp.text, "html.parser")
-    articles = []
-    seen_urls = set()
-
-    # Strategy 1: <article> tags
-    for art in soup.find_all("article"):
-        item = _extract_from_container(art)
-        if item and item["url"] not in seen_urls:
-            seen_urls.add(item["url"])
-            articles.append(item)
-
-    # Strategy 2: common card/post div wrappers
-    if not articles:
-        for cls in ("post", "article", "entry", "card", "item", "news-item",
-                    "td_module", "jeg_post"):
-            for div in soup.find_all("div", class_=re.compile(cls, re.I)):
-                item = _extract_from_container(div)
-                if item and item["url"] not in seen_urls:
-                    seen_urls.add(item["url"])
-                    articles.append(item)
-            if articles:
-                break
-
-    # Strategy 3: h2/h3 headings with nearby date/excerpt
-    if not articles:
-        for heading in soup.find_all(["h2", "h3"]):
-            link = heading.find("a", href=True)
-            if not link:
-                continue
-            href = _normalize_url(link.get("href", ""))
-            if not href or "mining.com" not in href:
-                continue
-            title = heading.get_text(strip=True)
-            if len(title) < 10 or href in seen_urls:
-                continue
-
-            date, subtitle = "", ""
-            container = heading.parent
-            for _ in range(5):
-                if container is None:
-                    break
-                date = _find_date(container)
-                subtitle = _find_subtitle(container, heading)
-                if date or subtitle:
-                    break
-                container = container.parent
-
-            seen_urls.add(href)
-            articles.append({"url": href, "title": title,
-                              "date": date, "subtitle": subtitle})
-
-    print(f"HTML scrape: {len(articles)} articles")
-    return articles
-
-
-def _extract_from_container(container):
-    heading = container.find(["h1", "h2", "h3", "h4"])
-    if not heading:
-        return None
-    link = heading.find("a", href=True) or container.find("a", href=True)
-    if not link:
-        return None
-    href = _normalize_url(link.get("href", ""))
-    if not href or "mining.com" not in href:
-        return None
-    title = heading.get_text(strip=True)
-    if len(title) < 10:
-        return None
-    return {
-        "url":      href,
-        "title":    title,
-        "date":     _find_date(container),
-        "subtitle": _find_subtitle(container, heading),
-    }
-
-
-def _normalize_url(href):
-    href = href.strip()
-    if href.startswith("//"):
-        return "https:" + href
-    if href.startswith("/"):
-        return "https://www.mining.com" + href
-    return href
-
-
-def _find_date(container):
-    time_tag = container.find("time")
-    if time_tag:
-        dt_attr = time_tag.get("datetime", "")
-        return dt_attr[:10] if dt_attr else time_tag.get_text(strip=True)
-    for cls in ("date", "time", "meta", "published", "entry-date", "post-date"):
-        el = container.find(class_=re.compile(cls, re.I))
-        if el:
-            txt = el.get_text(strip=True)
-            if txt:
-                return txt
-    text = container.get_text(" ", strip=True)
-    m = re.search(r"\b(\d{4}-\d{2}-\d{2})\b", text)
-    if m:
-        return m.group(1)
-    m = re.search(
-        r"\b(January|February|March|April|May|June|July|August|"
-        r"September|October|November|December)\s+\d{1,2},?\s+\d{4}\b", text)
-    if m:
-        return m.group(0)
-    return ""
-
-
-def _find_subtitle(container, heading_elem):
-    for cls in ("excerpt", "entry-summary", "entry-content", "description",
-                "summary", "teaser", "intro", "post-excerpt", "td-excerpt",
-                "jeg_post_excerpt"):
-        el = container.find(class_=re.compile(cls, re.I))
-        if el:
-            txt = el.get_text(strip=True)
-            if txt:
-                return _truncate(txt)
-    for p in container.find_all("p"):
-        if heading_elem in p.parents or p in heading_elem.parents:
-            continue
-        txt = p.get_text(strip=True)
-        if len(txt) > 20:
-            return _truncate(txt)
-    return ""
-
-
 def _truncate(text, max_len=200):
     if len(text) <= max_len:
         return text
@@ -265,9 +147,14 @@ def _truncate(text, max_len=200):
 # ── Translation ────────────────────────────────────────────────────────────────
 
 def _translate_to_zh(text):
-    """Translate text to Simplified Chinese. Returns original on failure."""
+    """Translate text to Simplified Chinese. Returns original on failure.
+
+    Short strings (≤40 chars, likely just a source name) are not translated.
+    """
     if not text:
         return ""
+    if len(text) <= 40:
+        return text  # source names like "mining.com", "Reuters" — no translation
     try:
         return GoogleTranslator(source="auto", target="zh-CN").translate(text)
     except Exception as e:
