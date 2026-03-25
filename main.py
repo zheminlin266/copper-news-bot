@@ -26,11 +26,12 @@ from deep_translator import GoogleTranslator
 
 NEWS_LIST_FILE = "News_List.md"
 
-# Google News RSS: copper news from mining.com only (site: operator restricts domain)
+# Google News RSS: copper news, filtered to mining.com by <source> tag.
 # Direct mining.com access returns 403 from GitHub Actions IPs; Google News is the proxy.
+# Note: site: operator is not supported in Google News RSS — filter by source instead.
 GOOGLE_NEWS_RSS = (
     "https://news.google.com/rss/search"
-    "?q=copper+site%3Amining.com&hl=en-US&gl=US&ceid=US:en"
+    "?q=copper&hl=en-US&gl=US&ceid=US:en"
 )
 
 HEADERS = {
@@ -90,29 +91,24 @@ def _fetch_via_google_news():
         if not title or not link:
             continue
 
+        # Filter: keep only articles from mining.com
+        if "mining.com" not in source.lower():
+            continue
+
         # Strip source name from end of title (Google appends " - Source Name")
         if source and title.endswith(f" - {source}"):
             title = title[: -(len(source) + 3)].strip()
 
         # Use description snippet as subtitle if it's meaningful (>30 chars),
-        # otherwise fall back to the source name
+        # otherwise omit (source name is already obvious since we only show mining.com)
         desc_clean = BeautifulSoup(desc, "html.parser").get_text(strip=True)
-        if len(desc_clean) > 30 and desc_clean != title:
-            subtitle = _truncate(desc_clean)
-        elif source:
-            subtitle = source
-        else:
-            subtitle = ""
+        subtitle = _truncate(desc_clean) if len(desc_clean) > 30 and desc_clean != title else ""
 
-        # Resolve Google redirect URL → real article URL
-        real_url = _resolve_url(link)
-
-        # Safety filter: keep only mining.com articles
-        if "mining.com" not in real_url:
-            continue
-
+        # Use Google's redirect URL directly — mining.com blocks HEAD requests from
+        # CI runner IPs, so redirect resolution would fail. The Google URL works fine
+        # in a user's browser.
         articles.append({
-            "url":      real_url,
+            "url":      link,
             "title":    title,
             "date":     _parse_rss_date(pub),
             "subtitle": subtitle,
@@ -121,14 +117,6 @@ def _fetch_via_google_news():
     print(f"Google News RSS: {len(articles)} articles fetched")
     return articles
 
-
-def _resolve_url(url):
-    """Follow redirects to get the final article URL."""
-    try:
-        r = requests.head(url, headers=HEADERS, timeout=10, allow_redirects=True)
-        return r.url
-    except Exception:
-        return url  # keep original on failure
 
 
 def _parse_rss_date(pub_str):
