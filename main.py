@@ -88,6 +88,13 @@ def _fetch_via_google_news():
         source = source_tag.get_text(strip=True) if source_tag else ""
         desc   = desc_tag.get_text(strip=True)   if desc_tag   else ""
 
+        # Fall back to <guid> if lxml-xml parsed <link> as empty
+        if not link:
+            guid_tag = item.find("guid")
+            link = guid_tag.get_text(strip=True) if guid_tag else ""
+
+        print(f"  item: source={repr(source)}, has_link={bool(link)}, title={repr(title[:50])}")
+
         if not title or not link:
             continue
 
