@@ -277,8 +277,13 @@ def _translate_to_zh(text):
 
 # ── News_List.md persistence ───────────────────────────────────────────────────
 
+def _norm_url(url):
+    """Normalize a URL for dedup comparison: strip trailing slash."""
+    return url.rstrip("/")
+
+
 def load_seen_urls():
-    """Read News_List.md and return a set of all recorded URLs."""
+    """Read News_List.md and return a set of all recorded URLs (normalized)."""
     if not os.path.exists(NEWS_LIST_FILE):
         return set()
     seen = set()
@@ -286,7 +291,7 @@ def load_seen_urls():
         for line in f:
             m = re.search(r"\*\*URL\*\*:\s*(https?://\S+)", line)
             if m:
-                seen.add(m.group(1).strip())
+                seen.add(_norm_url(m.group(1).strip()))
     return seen
 
 
@@ -326,8 +331,9 @@ def send_telegram(bot_token, channel_id, items):
         date  = _escape_html(item.get("date", ""))
         subtitle_zh = _translate_to_zh(item.get("subtitle", ""))
 
+        url_safe = url.replace("&", "&amp;")
         lines.append("")
-        lines.append(f'{i}. <b><a href="{url}">{title}</a></b>')
+        lines.append(f'{i}. <b><a href="{url_safe}">{title}</a></b>')
         if date:
             lines.append(f"📅 {date}")
         if subtitle_zh:
@@ -344,8 +350,9 @@ def send_telegram(bot_token, channel_id, items):
 
 
 def _post_message(bot_token, channel_id, text):
+    api_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     resp = requests.post(
-        f"https://api.telegram.org/bot{bot_token}/sendMessage",
+        api_url,
         json={
             "chat_id":                  channel_id,
             "text":                     text,
@@ -356,7 +363,22 @@ def _post_message(bot_token, channel_id, text):
     )
     data = resp.json()
     if not data.get("ok"):
-        raise RuntimeError(f"Telegram API error: {data}")
+        # If Telegram rejects the HTML, retry as plain text
+        if "parse entities" in str(data).lower() or "can't parse" in str(data).lower():
+            print(f"HTML parse error from Telegram, retrying as plain text: {data}")
+            plain = re.sub(r"<[^>]+>", "", text)
+            resp = requests.post(
+                api_url,
+                json={
+                    "chat_id":                  channel_id,
+                    "text":                     plain,
+                    "disable_web_page_preview": True,
+                },
+                timeout=30,
+            )
+            data = resp.json()
+        if not data.get("ok"):
+            raise RuntimeError(f"Telegram API error: {data}")
     return data
 
 
@@ -402,8 +424,11 @@ def main():
 
     # 2. Identify articles not yet in News_List.md
     seen_urls    = load_seen_urls()
-    new_articles = [a for a in all_articles if a["url"] not in seen_urls]
+    print(f"Seen URLs in {NEWS_LIST_FILE}: {len(seen_urls)}")
+    new_articles = [a for a in all_articles if _norm_url(a["url"]) not in seen_urls]
     print(f"New articles (not in {NEWS_LIST_FILE}): {len(new_articles)}")
+    for a in new_articles[:5]:
+        print(f"  NEW: {a['url']}")
 
     if not new_articles:
         print("No new articles to send.")
