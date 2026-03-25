@@ -1224,3 +1224,336 @@
 - **URL**: https://news.google.com/rss/articles/CBMihwFBVV95cUxOVVNIaTU3dlBOVkZHdXA2TVB6S1d0bUVFMWtNRmlrOUVGNVFjREg5VTBFQy1lTnJRMUQzNkZfcDl6UnJQclZrWGJvaHFfekFGcUsybk9odlhPek5FbFoxYW9URlBxS3ZZWmZpdGxyTHNXZVNHLV9SY0ZMSTdodUdqcHgycjZNVjQ?oc=5&hl=en-US&gl=US&ceid=US:en
 - **Subtitle**: Float Copper & Florence Copper Mine: Do Diamonds Float?Farmonaut
 - **Added**: 2026-03-25 10:52 GMT+8
+
+---
+
+## Copper Prices and Mining Stocks Fell Hard on Iran War. Why the Dip Is Worth Buying.
+
+- **Date**: 2026-03-04
+- **URL**: https://news.google.com/rss/articles/CBMikANBVV95cUxOSkJmU3NrdUdoSUluRlljaXU3MWtxZXZBby1DN1AzRU4yOFJIWmZtTzhaY2UtVzRFM2IySDM2dmFCY1ZPYWRJNks3VHA1X1YyZGhHZUlkOElwdTJYdDMxTWx2aTFvMi11YmxDc3U5RWc1YnZWTnN6b1RqcmNubG5paEoxSi1jZGtFby0xazBIYlE4ZUlOSExfdW1NOGxGNEl3b21fMkM5RUZ1cERwZ2lyOHB3UGlJcWlUS0RzZFNndnlpdVpGQkJzVWhmMmpJLXZyUDBqNWN2d2JQbGZDZ28xNGZDV2NLa1VtNUFveHJRU1JnWlpRaXdCOFlSV3EwdnN2TFJ0aEdtaVhRc1lHR3FCVFNTVkJqU1M3V3dKcTdDV3NLQzVHTjM0QjNRajM4WjMwWlJlVDBJbXhsLTBBUFlTQ2JQMGZuVVNxRldmUWhJRk9kZ1NzTDdvX0stQXlhWFhaeko5QjNjYlJ0OVZFMWFoZnJxVFhrSjNZMkZ2NDRQMHkwQmtDNXV2XzhYb0NjY1JE?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Copper Prices and Mining Stocks Fell Hard on Iran War. Why the Dip Is Worth Buying.Barron's
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Discover Chile's copper industry, from mining in the Atacama Desert to refining on the Pacific coast
+
+- **Date**: 2026-03-12
+- **URL**: https://news.google.com/rss/articles/CBMif0FVX3lxTFBRbEFBLTZySjdvTzhvZ2lNLW9nUk5DN0FxNmk2bnZpQlYxRUlDX1N2anZ4MlF4d09yeXM2VmtWQXJhdVF6OVp6QWhGc1V2RmpVaW9BSkRCMVpnRWlkVVRzT2RoUnp0MGhUUXhVN0MyNlZtSW9peEpKNE9qMldwdWc?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Discover Chile's copper industry, from mining in the Atacama Desert to refining on the Pacific coastBritannica
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Can Arizona Miners Unleash an American Copper Boom?
+
+- **Date**: 2025-12-02
+- **URL**: https://news.google.com/rss/articles/CBMisANBVV95cUxQYzdDZEhteFJzUDFUQ1NyVnZTZng3RWJTQmVleFRSQjJfa1lCU0xUZnBqbkdDZXZmRGtBVTlHVDJrRWxuSm5fdFI2ZDVndHFKVjVHU0hoU1dxdEJHSC1TczZRWk15UU1obXZGclgwU011Y2hUbEp3TFhNZ2l3cUpSODQ3TE5nLU1qWUF6eURpclg3Tk8yZFk1WEc3MDd5Rm9UR2h5SXFUbUJKRC1CZDVxMktCSDhsYk94cUFnYjhuWDh5NGtJTkxJcmVUOWFuNzh6LU90Wm1PV0pXczg4LTJEVnJBU0JnRnZTYURrUVZ2ZEtyQkthcHVUN1FPRnJGNFZhTUVwS0pVOVU1eTM5R29ncmJkS01aTnZka09EeVpUVS1vZWZISFlQTUhaNjR5QWY0NDRYdms4SV9QZ1UtdVNTaW9qTG9BM2V1UmNyYXowS1VVZ1BRYUdHLThMOHNZbDRpZ2t3M09mQXFIbGE5emVzcTk0RHZyX3AwdDVyX3FQeWg4S1hGNm9jNHFZNU01MW1aLTlOeHF3Ymd6QjFvbEFWWmNGMUFIem1QUm9JQm9jZlE?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Can Arizona Miners Unleash an American Copper Boom?WSJ
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## The Rising Costs of Zambia’s Copper Boom
+
+- **Date**: 2025-12-09
+- **URL**: https://news.google.com/rss/articles/CBMinAFBVV95cUxPcklNNnRUS1VLQnE5U0FHQ2Y0TmxiLTRleW16VWR5OWtLMHNIQTMyWmNwMUppd2pPNTRXcV9JNHNSZnpWd2lweFFISnlLUGo5a0l1ZmRyWTM3dHpfTWdVLWRpMjZRR3RxcEs0aHcxVVBoY3p2UnhkMWxKLWk0Y3dFZjBmLWFWSXE2WjVzay1uR043ZmFXZ0swQ1VEUkI?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: The Rising Costs of Zambia’s Copper BoomEarth Island Institute
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Top 10 Copper-producing Companies
+
+- **Date**: 2026-02-25
+- **URL**: https://news.google.com/rss/articles/CBMivgFBVV95cUxQcFlkbFRTeE9yaUJ1S3FlX3RFVnlZdkRKb1lXZjU4Tmh5cllSR25oalZ6UTZBTkxXbnZjdXN2V2NKV0dIYWVJZVA3YXdONXkyTHlDOV9GYVN2X0lKdTZFbEJQUFYxSkdFWk9RZWZuY0lBYmp4R2pqOW0waGVZVEVyMldnMW9rTUhYdjhiOW9IUEx4NTJKRlRuMFBDTWwwRHNsRDZFUERtdmNOTzdfQ1ptbHJ5NlJIQUp4QVVacFRB?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Top 10 Copper-producing CompaniesInvesting News Network
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Mining company says drilling confirms ‘significant’ copper, gold in northern Wisconsin
+
+- **Date**: 2025-09-23
+- **URL**: https://news.google.com/rss/articles/CBMikgFBVV95cUxQSGNXeEl3M2NCU0dHQUV1cGJDcE5WM0tPSlN4NUFKamdLak1TOUUybkFEYVNCRkY2MHFaNkhKaHdGR1lfa1ZydXU1TkNlTVBrYnRKd0dGZ1ZIS21nWVlVMTQzTW1rSzBkdVlEX3BSNzZuaXQ1WW54MWZYdlpBdUcydXlnVnFzc1BrUUd0OGNRVjVzZw?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Mining company says drilling confirms ‘significant’ copper, gold in northern WisconsinWPR
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## FCX vs. SCCO: Which Copper Mining Giant Should You Bet on Now?
+
+- **Date**: 2026-02-24
+- **URL**: https://news.google.com/rss/articles/CBMie0FVX3lxTFBSWEVDTjlXVEdNcEdxNHVHaF9wQmNPcWlLMFZLM0M1V0NoT2JUUWMwTnBjVDFscjJyaV9tSDhQZDJjZ2E1QnNnNmlnbGN2QUIwZk1EVzFHQU5FOUFFWlNlY1RMeXNkQ2d5QUF4S1M4a3NZZ292WjBHaFl3bw?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: FCX vs. SCCO: Which Copper Mining Giant Should You Bet on Now?Yahoo Finance
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Discover the Top 5 Copper Stocks on the TSX in 2025
+
+- **Date**: 2025-12-11
+- **URL**: https://news.google.com/rss/articles/CBMirgFBVV95cUxPRE9QOE82ZElJTnJVcWhZSkYtTWlNOXBTTDNYR0ZjT2NQQ0poWjRKbUZVZlU2OWZmaFVBRHQ3XzVqRkFGdkhNTW9kVVktTVVKUE1RUHNRc21PeFZmVnVSS1U2T1pqMEcwLXlsbi1QV0d4bGRHNXVfLUZFc3NXazdYSnZSbVMyblhGYXJwWWZ3VlZCUEN4cEt6cEJ6dUZHT0pBLURTbmZ2c3lNNU55cHc?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Discover the Top 5 Copper Stocks on the TSX in 2025Investing News Network
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Mining Matters. So Do the Boundary Waters.
+
+- **Date**: 2026-02-23
+- **URL**: https://news.google.com/rss/articles/CBMiqgFBVV95cUxPV2tNVmp1NTZ1WTBsRW5kblV3dm43cE9qYTJRamNQQmlzUkFyblhOYkRGUG13UnRsOHc5dWtJdVJXbmxqaFhSRWE2aE5ZaG5pZnNiZEgwcUF2d1dxTjZ4RmFwMEQxSUN5aVBlb0JFb3YzLTVwemxYVWtfV2NjSFVIOTNxWnhOM3Ria2V4ek5RaHpfc0V6TzlMY0NRR00wRWxkX2xsQy1udXdmZw?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Mining Matters. So Do the Boundary Waters.MeatEater
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Taseko’s Florence mine delivers first new US copper in 17 years
+
+- **Date**: 2026-03-02
+- **URL**: https://news.google.com/rss/articles/CBMijwFBVV95cUxNMDlQYUVCclA0Q2RCTnpKeEtCeklHeUJHTWRCN2NnNDZHd3ktT2s5cVhheUc5Qm5kZ3BxanBUWTktRFdXWk5HdTF0VFlqNkhvMl9xMnoxQ1liUlAxOFlMeEdhcXBHWWpuSXNiTkl5RlVQanlaTVFWMk1fTUN0UWl2TE9ETVVJbWcxVTNWc1p2NA?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Taseko’s Florence mine delivers first new US copper in 17 yearsMining.com
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Copper prices could soar further amid a tightening market
+
+- **Date**: 2025-11-28
+- **URL**: https://news.google.com/rss/articles/CBMiggFBVV95cUxNdEVRd0Q1NG5JREpYY3N2X0tXbkRVV1RuM3g5MkZnT20wNl9zQ0VHa0hjQVBQcmJsRlJmQWtjRWNoclJFRWI2ZDJiRHo5V1hvWUJyX2xZbGQxR01KS0pFbVlMbUdpUjB1ZDBLNWJ3aVlHU1NxVDF3T3o5Z2Fvang0SHBn?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Copper prices could soar further amid a tightening marketJ.P. Morgan
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Milei’s push to ‘Make Argentina Great Again’ puts copper potential in the spotlight
+
+- **Date**: 2025-09-05
+- **URL**: https://news.google.com/rss/articles/CBMipwFBVV95cUxNR0JvZDZTb0o5dzRVd1VsSUFtT0pBMjQ0S0FWOVo0NnRyZWRHdVRtMVR1OTdLbnMyR05RalVKWnF0UEFuNFZQaVYwbnBrV1VKSkFOQzEwUk9FWXc0ejBhVmp2V0xBUWVkQ2Z2Tmg2MjE0ZVRYd3o1QXVRWmZHcGkyZGdEWVQ1cXVfSU94b2ZmMC1TMTRLdlVVWDdtUmEyWDVpYjh1djh0d9IBrAFBVV95cUxNZF9VRVE3SWo2QjlYdlV5SE5zd1dZdkQwbGNVa3pxR3pPM2pHc2k4RmhObkZ6M3lTZmlYd2w4RldBNlFJdkI1dWNYSHJqaXBxTEhPeTY3aDUyeXRVVTlRMFV1WWw4by1OOGMwWVJYV3RJRS1HaU84LWEzNkozOVJvY25kQUl1bi1SblE3VDh4WC1fdGNHTE81THJOMEdIU1RwVmx3Nld5d1AtT1dC?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Milei’s push to ‘Make Argentina Great Again’ puts copper potential in the spotlightCNBC
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Milei Wants to Turn Argentina Into a Mining Powerhouse
+
+- **Date**: 2025-11-11
+- **URL**: https://news.google.com/rss/articles/CBMilwNBVV95cUxNSVo4X3U2RTZXY0ZaeGNMQ1lBMUFCQmZFbEdiQWhBdFVJZmhRNkZjTlBZMmcxYWVsQ2FKLWFRb2FIOV96cVM2enpienZWTVFwRS1NSE1TVml0WEtPNmlfLXFlbWhUMlp1b19Pa3U4ZnRoZWJTTHlOM28xUWIyRnU5aUVOTzc2bDhpNjVkcnJBamlhZ0VwVWRtb293LWN1bG5nODVxbWNpTEpfaDJjRWEzMlktVVQtSXFpNXRDV01wTDBVU0lpdlVJVXRuUGloMUNGeUVkTm1PSmNzWm85d2ZaUlhhTjNyMFVHcW4zT0JrenBNNi1yOXF5ak5oWVlHcXp4OENvclA5S0taUTl6aEhiSGMxMld6bGw1SkI1TjdVLWdoZXJvNURUVDE1Yjg2dU9MMEFNRnNBSVlMWXJvckVyUTVhN0hCdzVLMm9CNEI4bGpSaXk4SEkzamp2M2lTNUFuZGdoYVBSZllVVy1QczZhMko4NEVJZlRFYm9xX3lzd3c1aGF2c2cyVEFmWjEyTTY2TUo0WkwwTQ?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Milei Wants to Turn Argentina Into a Mining PowerhouseWSJ
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Anglo Teck set to transform global copper mining landscape post-merger
+
+- **Date**: 2025-09-18
+- **URL**: https://news.google.com/rss/articles/CBMi4wFBVV95cUxNMl93Mjk1M3pVOWNsX1VYLUI1RmUyb2g2STYtVVRzSUZFMzBUcFljdlo5ZzF4a2tFMUJIamF5dHBSVzE3RlgycWY4RjdTSDNwRzJNTE5PcDNxNlBJM2hYbWNIQ3E1OGxHZTVqS2h3YmdBUVFLcTZZcmhZZWRuS182T1RHSEEwQmhMaVRTaFc1cGVEQVZuNkNyTTR6clN4Y3JIdW10QkI4RHBncE9FWkJzazU5QjMzQWc4ekZQTy1KdnlmSFgtUVRGcWhRcUpNZXpnbjVWc0lGVDc2SmRqV2VsUTJEWQ?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Anglo Teck set to transform global copper mining landscape post-mergerS&P Global
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## The Three Days When BHP Tried to Crash a Copper Mining Mega Deal
+
+- **Date**: 2025-11-25
+- **URL**: https://news.google.com/rss/articles/CBMitgFBVV95cUxQWk53Tm5DTXh3WU11WkJLYkNpN2FfcFZVVXVxZE1ta3RVMXYwVWM1bEo4OFFOWE45anIwN3JJamJZN3dPTWtkSnVoSy1XNmRCbHRjX2Jfa0hCbEFCblJfMnlzcUJlaG1JY0JiOXhOeWZiNEhkZWVCRUU2RVVOUWZDRGR1VlZqcHNWRTE0R3ExTVhybWV3OEdmVks1RkY1RUhCdnFLcTFpeGlrQzB2bU1aS01BY3FvZw?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: The Three Days When BHP Tried to Crash a Copper Mining Mega DealBloomberg.com
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Opinion | A copper mine would turn much of this paradise into an industrial zone
+
+- **Date**: 2026-02-24
+- **URL**: https://news.google.com/rss/articles/CBMikwFBVV95cUxPWXVka0xaUDFjTHVVbHRaUmxZcXlHYUtfX1k0eUlOaTBhWVRuak1BZWx1RUE1UEtLWkZ6d1dHRk9oUVRjdjhPOVBzbzhOUVFLc3ZaVXYyNzhZSTFUb3JJYXdiNkhUOWdCVEJDRWpsZ2hnYkVWRkVOaThHbkpSekVaSmhmMGVJbmZCVDNlWFQ2YWczcjA?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Opinion | A copper mine would turn much of this paradise into an industrial zoneThe Washington Post
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## U.S. appeals court stalls Arizona land transfer for copper mining
+
+- **Date**: 2025-08-21
+- **URL**: https://news.google.com/rss/articles/CBMipgFBVV95cUxNWXFpaUNnNkpVaDJyTGN4UG5QVnZXem9mQjloa2Z2VTNxQlFuMDVhVmJSdUM4V0ZhUm9sMGtYTVltSUtXTC11aGRMX192MFpxaThHNEFTY2xfYWFiaDFQdi1qMXdQa0hXU2RNUHNpamExUVMzRGdiTmJGWXgyb1ZVUnYzZHJQUlJlRi1vMUlGOXR5Q0p2eGZoZWZyLUVUcHdYSldadzRB?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: U.S. appeals court stalls Arizona land transfer for copper miningCenter for Western Priorities
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Copper Mining ETF (COPX) Hits a New 52-Week High
+
+- **Date**: 2026-01-07
+- **URL**: https://news.google.com/rss/articles/CBMifkFVX3lxTE5QZzBqQk8zcUVMTFFzZkRUMDMtcGlMdWlsZUhkU1VXYnJMUXV4OTZHTkowVmFTUFE3dk9xa215enRTQXNTeXNlR284TTloU3FNb3dkLUdiSzg2UWpHeDN6Vk9KRVdZSVR2Tk1fUG1PeXd0SWQxUjZNWnNzWkhnUQ?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Copper Mining ETF (COPX) Hits a New 52-Week HighYahoo Finance
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## How to Analyze Copper Mining Stocks: A Complete Guide to Valuation and Risk
+
+- **Date**: 2026-01-15
+- **URL**: https://news.google.com/rss/articles/CBMihgFBVV95cUxOTkVYbGd0RVE5MWViRWRSV2UzYlpONzgzRDJmWlhXM0NqYzI5UVZuanh3SGRjNkJGeXVIZ21aTGxTMjYzWXQ4RVFZSG9SOTlQMFBYWVJZZFdJcUZSRllzbHpHcV9hTHZtYVlHak9hSTI5VlVFYU1yWWtmZk1nQnJrQjVCVjR4Zw?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: How to Analyze Copper Mining Stocks: A Complete Guide to Valuation and RiskInvesting.com
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Extractive assistance: copper mining, socialist development and urban planning in Mongolia, 1962–1983
+
+- **Date**: 2025-09-29
+- **URL**: https://news.google.com/rss/articles/CBMinAJBVV95cUxOMFhraU9zcG5qYk9NdnA5R2FjUEZ5VDlDQzQ5RWlXdWltMU9oMGFHcElQMmZ3ZXljMl9LYnB0YzRHN3Ryd0E1d0MxTGptNkpDcjNRUTkxSnp2WjBsdk81X1VmVkYyTTA3YU8tcVhQNXdKdzFPVFExR2tiZ0xBTWlnZHZobGxZOURrc3Q2SEQzZTJxT0F1MUJvVk5MUmpERE5vZW5VU3ZYTURCYWktY2djMng1ZWRfTTFyWGRUY204RUcwQXFYYVJyTkprbnEzc2FWVm1laHdJVzJMdUY5QmpDdDBCWGNsWV9RLU91emp2NC1SNVlEcUdlR2t4SFViOWNhWlVlNWt3Smh0RmRZQlRxRjlOMFR5WjM5cklCUQ?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Extractive assistance: copper mining, socialist development and urban planning in Mongolia, 1962–1983Cambridge University Press & Assessment
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## The Coming Copper Squeeze: Miners Stand To Benefit (NYSEARCA:CPER)
+
+- **Date**: 2026-01-27
+- **URL**: https://news.google.com/rss/articles/CBMilAFBVV95cUxQWG16OWluTXZUbVNFbk5lWlpKd3pHczVNdWQtMV9iYnlzSEZzTzNZTkptRWtJUnBtaFpLUFhlYm1fU3FFVENNWGxhbnFlenVFZi1qYTMxalBrdnRCTHZpY2RKdG5oTjlRRmk3NmdjU0V0Sk90VGtWVnJuOGdtbDFCMHNId1MtbExiZi10NzdlRmJGaTBj?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: The Coming Copper Squeeze: Miners Stand To Benefit (NYSEARCA:CPER)Seeking Alpha
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Miners turn to bacterial ‘bugs’ to extract copper as prices soar
+
+- **Date**: 2026-01-25
+- **URL**: https://news.google.com/rss/articles/CBMihAFBVV95cUxPdmh1RHJsY3lfSGxuYmk3MTcxV01RcDNJNVdaSEcxSkd5SWUtbnk2eDlVdEs1b1F5WlZJeDdkLWZLRXBYNWVaMFBybWxnQ19pb0l2M0l3U1A2alYzZU55cHFZR0llZ0hSc1pBcDZGWjJTQ0RpSDN4X2tVbmFOZm5Cc2R0UHc?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Miners turn to bacterial ‘bugs’ to extract copper as prices soarFinancial Times
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Environmentalists criticize Michigan House budget's $50 million allocation for UP copper mine
+
+- **Date**: 2025-09-03
+- **URL**: https://news.google.com/rss/articles/CBMidkFVX3lxTFBIMU42U2tveU9VZy1xcWFLTWN6d0ZzV2JiT25PUFhsS1ZYc1BjdkpxOTc3bmRwZ283c2VlYnNzNnBQTG1Dc3QyTi16LVREWFFpdXJkQ1FjVV9Cd2cyQk5UeWRHMzl0dzl2VVoxNDZqdENFZHc3X3c?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Environmentalists criticize Michigan House budget's $50 million allocation for UP copper minePlanet Detroit
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Rio Tinto vs. Southern Copper: Which Mining Stock Looks Stronger Now?
+
+- **Date**: 2026-01-22
+- **URL**: https://news.google.com/rss/articles/CBMif0FVX3lxTFA5Szc5NWhnZ2ZxeDNHcFRHd2Y1R1A0aVg3XzZWNnhCbWRCWmZTWnQtak9oNUpDVDRXdXNhV0lQNjhRTTkwYzlBcmZyN295SmVQWm5GZWdCNkpWZUJkMnd4cXBPbWlFQVc0cHZRYkt2ZW1fT1gteXhVdmZBT2hyMXM?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Rio Tinto vs. Southern Copper: Which Mining Stock Looks Stronger Now?Yahoo Finance
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Mining Financing of the Year – El Espino Copper Mine
+
+- **Date**: 2025-10-02
+- **URL**: https://news.google.com/rss/articles/CBMiqAFBVV95cUxQSXFuUm9jNDJ4bV9PejBhSUUtSEtIUzlXNmRKYTBrQ1Y5TGxPZURzR09qMS1JR2hhLVl2Vm4yTzJOanJzcFVsYlVCTUZaNDVtU0pOdUFxY3V1d3oyandzYVJJUE53M0dxckZWVzJfZ2xnZDhfU1B3S3JZblk0RkJRdkV0cEpRV0pDZ0d1SG5MZlp3akgzWDRtQnJGWnZGVlFJTFRuYzJtMFo?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Mining Financing of the Year – El Espino Copper MineLatinFinance
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Tariffs, Trump, and Alaska's copper future
+
+- **Date**: 2025-08-01
+- **URL**: https://news.google.com/rss/articles/CBMipgFBVV95cUxNRVRSZV9tNklKcWdhVF91elI0MzhoSGhLTkoydVlIZHk3RHUwektocG1SVWdSSG16UDFGNjJHWS1tbXNzRklUTS1rNXZSNHFUMFF6WmRhdmhWUHFHQzB6R0hkd1JMQmFINGI1R1k2QmloaWF1YUF6dm14YjZNeF8tLU5MN3p6aHl3MHhabW03NGltSTIzR19hMkkxRGhCbWpsdnlrV3hB?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Tariffs, Trump, and Alaska's copper futureNorth of 60 Mining News
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## BHP considers reopening defunct Arizona copper mines
+
+- **Date**: 2025-10-16
+- **URL**: https://news.google.com/rss/articles/CBMilwFBVV95cUxPQVZJbWpZTklHQjhDQzBSZXVwZFNkSGN0RkpTQXJNZkF3bENjcUt1V3JVZldvalItbnhlTmUtVzdwdkFJVHI2NXJheVU5TGZxUUNKa0JZOFVybkhreGF4dzFtZlducUI2d3ZDYkFpcnBrUGtMOFFQa2xfbXgzOUlULUVyejNPeHdKY2pNTC1valNZZmVzWUQ4?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: BHP considers reopening defunct Arizona copper minesMining Technology
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## US judge denies request to halt Oak Flat land transfer to copper mining company
+
+- **Date**: 2025-08-15
+- **URL**: https://news.google.com/rss/articles/CBMingFBVV95cUxPUGYwcElXaW0zTS1OSmI3VGdOQjNVcUZpbjBnOHVmR1J1ZkdFVGdZYWhLeWdYN0NCWjF0QlBTSDNJTGYwbkFpNDdNODZJMlc3eW9PakVhOEVBaEpjcWFlSkduOXVjNEFWYzR4SUpFc0VuV3htWjI3Rm5vSzNJalZXUDRyZmluTmtqTVRBN01oaFF6cEtHWnhQMUluWkFlUQ?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: US judge denies request to halt Oak Flat land transfer to copper mining companyAP News
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Freeport CEO pushes for US incentives to expand copper
+
+- **Date**: 2025-09-03
+- **URL**: https://news.google.com/rss/articles/CBMihAFBVV95cUxPenM4SXZiSkptMUdxa2xuanBtNFlPcmNzWktQOUpoZThDTS15N0dnOTdfdE9UOFZjZ3paaHBtWkFRTlVwVEdHWnBCdnJ2bldsalAtZkhyM1pEYW84Q3MxQzlDZzc3REpjTWtjMVVtNm1TdFBKWUxaRC1sNHhDeS1lMGZrejc?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Freeport CEO pushes for US incentives to expand copperMining.com
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Utah copper mine reopens after laying dormant for years — what could it mean for other struggling rural towns?
+
+- **Date**: 2025-12-28
+- **URL**: https://news.google.com/rss/articles/CBMihwFBVV95cUxOcjlPRmt4SFI0MnZTaG1ZT19meGdaREUxYmhSVTg1LXVGM21xUUl0U3AxMVU3eHM2N3I2OHpubHZVS1N0Zllxd3d5VXJlVF9HQTRpLVJtWEk5R0V2dmhrLXBHSG5pWjdEaFVBdHZ6N3ZZc2RYUWl2Nmg2Rk9WTDRtdEZqMHVNSzQ?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Utah copper mine reopens after laying dormant for years — what could it mean for other struggling rural towns?Yahoo! Finance Canada
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Mining company plans to begin drilling for copper and gold near Wisconsin city next week
+
+- **Date**: 2025-06-12
+- **URL**: https://news.google.com/rss/articles/CBMigAFBVV95cUxOQ2FaUHdhRGxKa2pKRmtfTFZSdEF1Wk50Q3BYMkZPR2R2V3o1Y0VTdzJ1b1RoWGtTaVVka1QyTVFkaVRNdUZtb0o0UjdCdHFDUGh4YjBCamozVUhfTEdDWEFmblgzSDBXS0ZIblNxa1JqMExLNzFXeEttaXd0bXRNYQ?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Mining company plans to begin drilling for copper and gold near Wisconsin city next weekWPR
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Collapse at Chile's major copper mine kills 1 worker and leaves 5 missing
+
+- **Date**: 2025-08-01
+- **URL**: https://news.google.com/rss/articles/CBMiqwFBVV95cUxOOWNZS2RsdFl5MmVWcGtJal9DX0ljcl9NazBaVVlCN2ZkYkJhRE9FeWdoRWJfUTYwVFo5dmRTX1NRdFRMemlfNm5YR2Q0OWFJQXhrT1hYaWpweF9WSWpOMS1MeEoyVWVibWZNR3ZmWEJVMV9nZ0RYbi1nMzYtNVIwZ0hDdnFBeXNITk94aF9BQW5hZU95bkVnbkVYSjZTNEF4SjM5QWo0NmRoN3PSAbABQVVfeXFMTUtHbXFvdUpEV1FENnV1Rkd2NUVuVUlESkhQbGVLdlhJNndnNVY5Z3ZHbUs3MzhSeXhORzRkazFQN3lIVmpPdmJETVhVZXI4LTVyUGFCWlZZRy00MGlDUFNBVUFjUjQzT093d1VVSkdESjB3Uy13cklVQlJZeDNZcWRZNDZLWkNhN1l4a202eWVBTlpJZmcxbl9zSmVGZ2NmYkY3dVNkV0hXb1gyazJ4MW0?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Collapse at Chile's major copper mine kills 1 worker and leaves 5 missingPBS
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Chilean regulator fines Antofagasta's Centinela copper mine for non-compliance
+
+- **Date**: 2026-01-23
+- **URL**: https://news.google.com/rss/articles/CBMiygFBVV95cUxNOVo2SW84UmZXbnVfeEYxSnljckExamJ6ZHB2Z283a0RKRUp0a052alRLbkhORkJ1aTEyWHBGTG5GOHFsVTkzUElpM19GTWxrakxJeURRV3JzYkEtTVNOc2lwSl96c2l3OFEwQmcxWGEzamdNVnM0eWpKVWxZaC1RUG82V2FHc0NwZ0pOSE9xdVBKTXhZcmdwblN1MFRmMmZ5TUdFcnV1bXdna045NTlFQTBnNnJ6eGN1a1c3c0hoQ2lBbExFc0JULWV3?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Chilean regulator fines Antofagasta's Centinela copper mine for non-complianceReuters
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## US appeals court puts the brakes on contested land transfer for Arizona copper mine
+
+- **Date**: 2025-08-19
+- **URL**: https://news.google.com/rss/articles/CBMingFBVV95cUxQT2hmSkFnZ2F2VzFqWUJXc1dYVVNnUE5vbHhvWE5Zem1zcjVPdW1FV0xMbW90NWlzRzNPcm9Ed1NHVmRWM1FhMzgwdzhIelF6Q3B0QkpvRlJLdTlSdGVVblZtbU40NFBURHlleF80RjBIOGtaQWJMbFMyY1ltYWk3WXpsbDkxdkZVRDdxbEo5QXhjaWRYSmNsOWpEQWdHQQ?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: US appeals court puts the brakes on contested land transfer for Arizona copper mineAP News
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Argentina's copper dreams need infrastructure - but who will build it?
+
+- **Date**: 2025-08-08
+- **URL**: https://news.google.com/rss/articles/CBMitAFBVV95cUxNVmltMFVBMVNjYmsyUk5sNy1DNFBWUzJLQy1HTV9SSVgwUVNJbVdQZi1lOFZGYjAtZXY0eDZ6MVNxcmI2WW5hcll5M29TS0pRUGVZdWhudWw5N1B6YV9UVjhwUk0xaFM4RVlpeUlTdjVwbThvWG44M2xubGt4c0R3UkdWTDVBdDRQMWJSeE9lN3pheG03YVNEczhkVElGd25DNmpXLUZrcjVCaWhfUHJOYjVHTXc?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Argentina's copper dreams need infrastructure - but who will build it?Reuters
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Watch Bringing Copper Mining back to the US
+
+- **Date**: 2025-07-21
+- **URL**: https://news.google.com/rss/articles/CBMilwFBVV95cUxPaU5FTWVkRkdqOS1vRkRuT1kxVTF0VzB0bTAxZkVxUENVNUdxa3JaVXppbmJHTWdxSDNpUC1qOWdnRnloWUk3d3d3bW9nanRzSkpWWXh6dXBaNV90eFd2dWJnbkc0X21XaDhRNGJlVVNRN2ZVNDZ1azAxX2dfUXU3VWpPWWtnNlpvMWU1TUlGSWxhbHl0OFAw?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Watch Bringing Copper Mining back to the USBloomberg.com
+- **Added**: 2026-03-25 11:38 GMT+8
+
+---
+
+## Zijin officially puts Julong Copper Mine Phase 2 into production
+
+- **Date**: 2026-01-25
+- **URL**: https://news.google.com/rss/articles/CBMinwFBVV95cUxOeG9XSlI1czhSSGlsbTVZM1VaQlFNNnc4YUgyMTZJZ1A4NW1Fb2t5cVlMdlZyeXJJNHN0a1RTWlJ2MkFnbFI1RDlVcUp6cmFGYWZEQ0lEV1l6YTdIVllkakdOd2hFTVRzY2xsNlBCeFBLOUVKSUwxcHJlbkd2NC0xV0htMWlQY2I1WDVkSzN1b0dCLUhHeVBNWWhQd0hFZzA?oc=5&hl=en-US&gl=US&ceid=US:en
+- **Subtitle**: Zijin officially puts Julong Copper Mine Phase 2 into productionInternational Mining
+- **Added**: 2026-03-25 11:38 GMT+8
