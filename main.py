@@ -26,10 +26,11 @@ from deep_translator import GoogleTranslator
 
 NEWS_LIST_FILE = "News_List.md"
 
-# Google News RSS: copper mining news, accessible from GitHub Actions
+# Google News RSS: copper news from mining.com only (site: operator restricts domain)
+# Direct mining.com access returns 403 from GitHub Actions IPs; Google News is the proxy.
 GOOGLE_NEWS_RSS = (
     "https://news.google.com/rss/search"
-    "?q=copper+mining&hl=en-US&gl=US&ceid=US:en"
+    "?q=copper+site%3Amining.com&hl=en-US&gl=US&ceid=US:en"
 )
 
 HEADERS = {
@@ -105,6 +106,10 @@ def _fetch_via_google_news():
 
         # Resolve Google redirect URL → real article URL
         real_url = _resolve_url(link)
+
+        # Safety filter: keep only mining.com articles
+        if "mining.com" not in real_url:
+            continue
 
         articles.append({
             "url":      real_url,
